@@ -48,7 +48,7 @@ speak_text() {
 }
 
 clean_text() {
-  echo "$1" | sed -E 's/\x1b\[[0-9;]*[a-zA-Z]//g' | tr -d '\r' | sed 's/  */ /g' | sed 's/^ *//;s/ *$//'
+  echo "$1" | sed -E 's/\x1b\[[0-9;]*[a-zA-Z]//g' | sed -E 's/[（(][0-9]+字[）)]//g' | tr -d '\r' | sed 's/  */ /g' | sed 's/^ *//;s/ *$//'
 }
 
 generate_summary_text() {
@@ -115,7 +115,7 @@ INITIAL_LATEST_SESSION=$(get_latest_session_file)
   while true; do
     # 0.2秒待機して1行読み取り
     if read -t 1 line <&3; then
-        clean_line=$(echo "$line" | sed -E 's/\x1b\[[0-9;]*[a-zA-Z]//g' | tr -d '\r')
+        clean_line=$(echo "$line" | sed -E 's/\x1b\[[0-9;]*[a-zA-Z]//g' | sed -E 's/[（(][0-9]+字[）)]//g' | tr -d '\r')
 
         # 1. 応答開始 (✦)
         if [[ "$clean_line" == *"✦"* ]]; then
