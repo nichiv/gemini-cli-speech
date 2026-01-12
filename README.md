@@ -1,4 +1,4 @@
-# Gemini CLI Speech Wrapper (PoC)
+# Gemini CLI Speech Wrapper
 
 Gemini CLIの応答をリアルタイムで読み上げ、長文の場合は自動的に要約を生成して読み上げるラッパースクリプトです。ハイブリッド監視方式（ターミナル出力監視 + JSONセッション解析）により、正確なタイミングでの発話を実現しています。
 
